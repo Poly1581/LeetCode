@@ -12,32 +12,55 @@ class Solution {
         }
     }
 
-    public ListNode rotateRight(ListNode head, int k) {
-        // Do nothing on empty list
-        if(head.next == null) {
+     public ListNode rotateRight(ListNode head, int k) {
+        // Do nothing if the list has 0 or 1 node(s)
+        //      Note: rotation on lists with 0 or 1 node(s) is equivalent to the identity for all k
+        if(head == null || head.next == null) {
+            return head;
+        }
+        
+        // Find length of list
+        int n = 0;
+        ListNode c = head;
+        while(c != null) {
+            n++;
+            c = c.next;
+        }
+
+        // Rotating right is equivalent to rotating left by the positive modulo of k
+        return rotateLeft(head, ((n - k) % n + n ) % n);
+    }
+
+    public ListNode rotateLeft(ListNode head, int k) {
+        // Do nothing if the list has 0 or 1 node(s)
+        //      Note: rotation on lists with 0 or 1 node(s) is equivalent to the identity for all k
+        if(head == null || head.next == null) {
             return head;
         }
 
-        // Make loop
-        int n = 1;
         ListNode p = head;
         ListNode c = head;
+
+        // Find last node in list
         while(p.next != null) {
-            n++;
             p = p.next;
         }
-        p.next = head;
 
-        //  Shift pointers
-        k = ((n - k) % n + n ) % n; // Positive mod
+        // Make loop
+        p.next = c;
+
+        // Shift nodes to the right by k
+        //      Note: shifting pointers to the right is equivalent ot shifting the loop to the left
         while(k > 0) {
             k--;
             p = p.next;
             c = c.next;
         }
 
-        // Rotate
+        // Break loop
         p.next = null;
+        
+        // Return new head
         return c;
     }
 }

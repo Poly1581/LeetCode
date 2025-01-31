@@ -12,7 +12,9 @@ class Solution {
         }
     }
 
-     public ListNode rotateRight(ListNode head, int k) {
+    // I broke up rotateRight into finding the length and rotating left to better illustrate my reasoning,
+    //but it is more memory efficient to do both in one function because of the memory overhead for a function call.
+    public ListNode rotateRight(ListNode head, int k) {
         // Do nothing if the list has 0 or 1 node(s)
         //      Note: rotation on lists with 0 or 1 node(s) is equivalent to the identity for all k
         if(head == null || head.next == null) {

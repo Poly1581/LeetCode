@@ -19,15 +19,17 @@ class Solution {
         }
 
         // Make loop
-        ListNode l = head;
-        while(l.next != null) {
-            l = l.next;
+        int n = 1;
+        ListNode p = head;
+        ListNode c = head;
+        while(p.next != null) {
+            n++;
+            p = p.next;
         }
-        l.next = head;
+        p.next = head;
 
         //  Shift pointers
-        ListNode p = head;
-        ListNode c = head.next;
+        k = ((n - k) % n + n ) % n; // Positive mod
         while(k > 0) {
             k--;
             p = p.next;

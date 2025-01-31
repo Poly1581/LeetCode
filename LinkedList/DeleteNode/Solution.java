@@ -14,16 +14,12 @@ class Solution {
     }
 
     public void deleteNode(ListNode node) {
-        ListNode p = node;
-        ListNode c = p.next;
-        
-        while(c.next != null) {
-            p.val = c.val;
-            p = p.next;
-            c = c.next;
+        // Use node as the pointer to save memory
+        while(node.next.next != null) {
+            node.val = node.next.val;
+            node = node.next;
         }
-        
-        p.val = c.val;
-        p.next = null;
+        node.val = node.next.val;
+        node.next = null;
     }
 }

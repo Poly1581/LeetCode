@@ -16,10 +16,10 @@ class Solution {
     public void deleteNode(ListNode node) {
         // Use node as the pointer to save memory
         while(node.next.next != null) {
-            node.val = node.next.val;
-            node = node.next;
+            node.val = node.next.val; // Shift values left
+            node = node.next; // Advance node
         }
-        node.val = node.next.val;
-        node.next = null;
+        node.val = node.next.val; // Shift value one last time
+        node.next = null; // Delete last node (redundant because of shifted values)
     }
 }
